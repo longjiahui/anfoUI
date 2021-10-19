@@ -1,0 +1,156 @@
+@import "variable";
+@import "transition";
+
+$sizes: (
+    0: 0,
+    xxs: 4px,
+    xs: 8px,
+    s: 16px,
+    m: 24px,
+    l: 32px,
+    xl: 40px,
+    xxl: 48px
+);
+
+@each $k, $v in $sizes{
+    .hblock-#{$k}{
+        .block-title{
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        @include hblock($v)
+    }
+    .vblock-#{$k}{
+        .block-title{
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        @include vblock($v)
+    }
+
+    .hborder-#{$k}{
+        &>*{
+            border-right: 1px solid #efefef;
+            padding-right: $v;
+            &:last-child{
+                border-right: 0;
+                padding-right: 0;
+            }
+        }
+    }
+    .vborder-#{$k}{
+        &>*{
+            border-bottom: 1px solid #efefef;
+            padding-bottom: $v;
+
+            &:last-child{
+                border-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    .hbox-#{$k}{
+        @extend .hblock;
+        @extend .hblock-#{$k};
+        @extend .hborder-#{$k};
+    }
+    .hbox-wrap-#{$k}{
+        @extend .hblock-wrap;
+        @extend .hblock-#{$k};
+        @extend .hborder-#{$k};
+    }
+    .vbox-#{$k}{
+        @extend .vblock-#{$k};
+        @extend .vborder-#{$k};
+    }
+}
+
+.hblock{
+    display: flex;
+    align-items: center;
+}
+.hblock-inline{
+    @extend .hblock;
+    display: inline-flex;
+}
+.hblock-wrap{
+    @extend .hblock;
+    flex-wrap: wrap;
+}
+.vblock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ellipsis{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.a-p{
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    transition: all .5s;
+
+    &.m{
+        max-width: 1024px;
+    }
+    &.s{
+        max-width: 800px;
+    }
+    &.xs{
+        max-width: 600px;
+    }
+
+    &-sidebar{
+        display: flex;
+        align-items: flex-start;
+
+        &.full{
+            padding: 0 20px;
+            max-width: 100%;
+        }
+    }
+
+    .sidebar{
+        width: 250px;
+        flex-shrink: 0;
+        text-align: right;
+        border-right: 1px solid #efefef;
+        padding-right: 24px;
+        transition: all .5s;
+        margin-right: 24px;
+    
+        &.m{
+            width: 250px;
+        }
+        &.s{
+            width: 200px;
+        }
+        &.xs{
+            width: 150px;
+        }
+        &.auto{
+            width: 72px;
+        }
+    }
+}
+
+.img-bg{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.clickable{
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover{
+        opacity: .7;
+    }
+}
