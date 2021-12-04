@@ -60,7 +60,9 @@ export default {
     },
 
     // 滚动
-    createListScrollContext({condition = {}, props = {}, api, pageDataProps = {}, dataMapper = d=>d, dataHandler = d=>d} = {}){
+    createListScrollContext({condition = {}, props = {}, api, pageDataProps = {}, dataMapper = d=>d,
+        afterMerge = d=>d,
+        afterFetch = d=>d} = {}){
         let data = reactive({
             datas: [],
             total: 0,
@@ -78,13 +80,14 @@ export default {
             pageSize: data.pageSize,
             dataMapper,
             setter(reset, d, noMoreData){
+                d = afterFetch?.(d)
                 if(reset){
                     data.datas = d
                 }else{
                     data.datas.push(...d)
                 }
                 data.noMoreData = noMoreData
-                data.datas = dataHandler?.(data.datas)
+                data.datas = afterMerge?.(data.datas)
             },
             ...pageDataProps,
         })
@@ -99,11 +102,11 @@ export default {
         return {
             data,
             refreshDatas,
-            handleData(){
-                if(dataHandler instanceof Function){
-                    data.datas = dataHandler(data.datas)
-                }
-            }
+            // handleAfterMerge(){
+            //     if(afterMerge instanceof Function){
+            //         data.datas = afterMerge(data.datas)
+            //     }
+            // }
         }
     },
 
