@@ -1,6 +1,4 @@
 @import "variable";
-@import "transition";
-
 $sizes: (
     0: 0,
     xxs: 4px,
@@ -82,75 +80,4 @@ $sizes: (
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.ellipsis{
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.a-p{
-    width: 100%;
-    max-width: 700px;
-    margin: auto;
-    transition: all .5s;
-
-    &.m{
-        max-width: 1024px;
-    }
-    &.s{
-        max-width: 800px;
-    }
-    &.xs{
-        max-width: 600px;
-    }
-
-    &-sidebar{
-        display: flex;
-        align-items: flex-start;
-
-        &.full{
-            padding: 0 20px;
-            max-width: 100%;
-        }
-    }
-
-    .sidebar{
-        width: 250px;
-        flex-shrink: 0;
-        text-align: right;
-        border-right: 1px solid #efefef;
-        padding-right: 24px;
-        transition: all .5s;
-        margin-right: 24px;
-    
-        &.m{
-            width: 250px;
-        }
-        &.s{
-            width: 200px;
-        }
-        &.xs{
-            width: 150px;
-        }
-        &.auto{
-            width: 72px;
-        }
-    }
-}
-
-.img-bg{
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.clickable{
-    cursor: pointer;
-    transition: all .3s;
-
-    &:hover{
-        opacity: .7;
-    }
 }

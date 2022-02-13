@@ -1,6 +1,6 @@
 {
   "name": "@anfo/ui",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "main": "dist/anfoUI.common.js",
   "scripts": {
     "serve": "vue-cli-service serve src/main/main",
