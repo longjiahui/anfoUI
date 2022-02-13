@@ -8,7 +8,8 @@
         <!-- <component v-else-if="$anfoUIListPagination" :is="$anfoUIListPagination" :context="context" :total-page="context?.totalPage?.value" v-model:current="context.data.page" v-model:pageSize="context.data.pageSize" :total="context?.data?.total" /> -->
         <div :class="containerClass">
             <slot v-for="(item, i) in context?.data?.datas"
-            :key="i" :item="item" :i="i"></slot>
+            :key="!dataKey?i:(typeof dataKey === 'string'?(item?.[dataKey]):(dataKey?.(item)))"
+            :item="item" :i="i"></slot>
         </div>
         <div v-if="context?.data?.datas?.length === 0 && noDataText" class="desc">{{noDataText}}</div>
     </div>
@@ -25,6 +26,10 @@ export default {
         },
         containerClass: String,
         noDataText: String,
+        dataKey: {
+            type: [String, Function],
+            default: null,
+        },
     },
     setup(props){
         let { context } = props
@@ -32,7 +37,7 @@ export default {
         let { data, refreshDatas } = context
         watch(()=>data?.page, ()=>{
             refreshDatas?.()
-        }, { immediate: true })
+        })
     }
 }
 </script>

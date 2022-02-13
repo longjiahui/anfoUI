@@ -3,6 +3,7 @@ import ListScroll from '@components/ListScroll'
 import pagination from '@scripts/pagination'
 
 import loadingDirective from '@scripts/directives/loading'
+import '@styles/utils.scss'
 
 let anfoUI = {
     install( app, {
