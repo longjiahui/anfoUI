@@ -1,5 +1,5 @@
 <template>
-    <div v-loading="context?.data?.isLoading" class="list-pagination vblock-xs">
+    <div v-loading="context?.data?.isLoading" class="list-pagination v-xs">
         <!-- context.totalPage是个computed，此处通过props传进来后不会自动解value，所以需要.value -->
         <!-- <a-pagination v-if="context?.totalPage?.value > 1" size="small" v-model:current="context.data.page" v-model:pageSize="context.data.pageSize" :total="context.data.total"></a-pagination> -->
         <!-- {{$slots.pagination && $slots.pagination()}} -->

@@ -1,5 +1,5 @@
 <template>
-    <div  class="list-scroll vblock-xs">
+    <div  class="list-scroll v-xs">
         <div :class="containerClass">
             <slot v-for="(item, i) in context?.data?.datas"
                 :key="!dataKey?i:(typeof dataKey === 'string'?(item?.[dataKey]):(dataKey?.(item)))" :item="item" :i="i"></slot>
