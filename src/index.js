@@ -1,5 +1,6 @@
 import List from '@components/List'
 import ListScroll from '@components/ListScroll'
+import ScrollContainer from '@components/ScrollContainer'
 import pagination from '@scripts/pagination'
 
 import loadingDirective from '@scripts/directives/loading'
@@ -17,6 +18,7 @@ let anfoUI = {
         }
         component('list', List)
         component('list-scroll', ListScroll)
+        component('scroll-container', ScrollContainer)
 
         app.use(loadingDirective, { loadingIcon })
         

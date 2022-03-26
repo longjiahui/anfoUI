@@ -15,6 +15,14 @@
         </div>
       </template>
     </anfo-list-scroll>
+
+    <div style="height: 300px">
+      <anfo-scroll-container duration="3000">
+        <template v-slot="{progress}">
+          <div class="page">{{progress}}</div>
+        </template>
+      </anfo-scroll-container>
+    </div>
   </div>
 </template>
 
