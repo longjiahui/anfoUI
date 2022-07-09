@@ -9,6 +9,19 @@ $sizes: (
     xxl: 40px
 );
 
+@mixin borderColorMixin(){
+    @each $borderKey, $borderColor in (
+        light: whitesmoke,
+        dark: #e9e9e9,
+    ){
+        &.border-#{$borderKey}{
+            &>*{
+                border-color: $borderColor;
+            }
+        }
+    }
+}
+
 @each $k, $v in $sizes{
     .h-#{$k}{
         &>* + *{
@@ -22,8 +35,10 @@ $sizes: (
     }
 
     .hb-#{$k}{
+        @include borderColorMixin;
         &>*{
             border-right: 1px solid #efefef;
+            
             padding-right: $v;
             &:last-child{
                 border-right: 0;
@@ -32,6 +47,7 @@ $sizes: (
         }
     }
     .vb-#{$k}{
+        @include borderColorMixin;
         &>*{
             border-bottom: 1px solid #efefef;
             padding-bottom: $v;
