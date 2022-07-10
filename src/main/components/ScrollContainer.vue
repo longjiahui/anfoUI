@@ -1,7 +1,7 @@
 <template>
     <div ref="scrollContainer" class="scroll-container page">
         <div class="stage">
-            <slot :progress="progress"></slot>
+            <slot :progress="progress" :seg="seg" :progress-in-seg="progressInSeg"></slot>
         </div>
         <div class="placeholder"
             :style="{
@@ -15,17 +15,45 @@ import { computed, defineProps, onMounted, onUnmounted, ref } from 'vue'
 
 let props = defineProps({
     duration: [Number, String],
+    segs: {
+        type: Array,
+        default: ()=>[1]
+    },
 })
 
 let duration = computed(()=>{
     let val = +props.duration
     val = isNaN(val)?0:val
-    return val    
+    return val
 })
 
 let scrollContainer = ref(null)
 
 let progress = ref(0)
+
+let finalSegs = computed(()=>{
+    let segs = props.segs
+    if(segs?.[0] !== 0){
+        segs.unshift(0)
+    }
+    if(segs?.[segs?.length - 1] !== 1){
+        segs.push(1)
+    }
+    return segs
+})
+let seg = computed(()=>{
+    let ind = finalSegs.value.findLastIndex(s=>progress.value > s)
+    if(ind < 0){
+        return 0
+    }else{
+        return ind
+    }
+})
+let progressInSeg = computed(()=>{
+    let segs = finalSegs.value
+    let nextProgress = segs[seg.value + 1] || 1
+    return (progress.value - segs[seg.value]) / (nextProgress - segs[seg.value])
+})
 
 let handleScroll = e=>{
     let scrollTop = e.target?.scrollTop

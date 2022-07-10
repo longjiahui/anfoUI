@@ -17,9 +17,9 @@
     </anfo-list-scroll>
 
     <div style="height: 300px">
-      <anfo-scroll-container duration="3000">
-        <template v-slot="{progress}">
-          <div class="page">{{progress}}</div>
+      <anfo-scroll-container duration="3000" :segs="[.5]">
+        <template v-slot="item">
+          <div class="page">{{item}}</div>
         </template>
       </anfo-scroll-container>
     </div>
