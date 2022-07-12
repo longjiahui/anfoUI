@@ -44,6 +44,7 @@ let finalSegs = computed(()=>{
 })
 let seg = computed(()=>{
     let ind = findLastIndex(finalSegs.value, s=>progress.value > s)
+    ind = Math.min(finalSegs.value.length - 2, ind)
     if(ind < 0){
         return 0
     }else{
