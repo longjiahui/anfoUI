@@ -12,6 +12,7 @@
 
 <script setup>
 import { computed, defineProps, onMounted, onUnmounted, ref } from 'vue'
+import findLastIndex from 'array.prototype.findlastindex'
 
 let props = defineProps({
     duration: [Number, String],
@@ -42,7 +43,7 @@ let finalSegs = computed(()=>{
     return segs
 })
 let seg = computed(()=>{
-    let ind = finalSegs.value.findLastIndex(s=>progress.value > s)
+    let ind = findLastIndex(finalSegs.value, s=>progress.value > s)
     if(ind < 0){
         return 0
     }else{

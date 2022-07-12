@@ -1,6 +1,6 @@
 {
   "name": "@anfo/ui",
-  "version": "0.1.33",
+  "version": "0.1.35",
   "main": "dist/anfoUI.common.js",
   "scripts": {
     "serve": "vue-cli-service serve src/main/main",
@@ -8,6 +8,7 @@
     "build": "vue-cli-service build --target lib --name anfoUI src/index.js"
   },
   "dependencies": {
+    "array.prototype.findlastindex": "^1.2.1",
     "core-js": "^3.6.5",
     "shortid": "^2.2.16",
     "vue": "^3.0.0",
